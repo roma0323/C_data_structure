@@ -5,7 +5,7 @@
 struct queue_mode{
 
     struct guest_mode{
-        char number[10];
+        char number;
         int amount ;
     };
 
@@ -15,14 +15,21 @@ struct queue_mode{
     struct guest_mode guest[MAXQUEUE]; 
 }queue,queue2;
 
-void ADDQUEUE(int element_item){                    //檢查重複代號
+void ADDQUEUE(){                    //檢查重複代號
+    char number;
+    int amount;
+    printf("input\n"); 
+    scanf(" %c %d",&number,&amount);
+ 
     if(queue.front==(queue.rear+1)%MAXQUEUE){
         printf("full\n");                           //最後要拿掉
         return;
     }
-    queue.item[(++queue.rear)%MAXQUEUE]=element_item;
+
+    queue.guest[(++queue.rear)%MAXQUEUE].amount=amount;
+    queue.guest[(queue.rear)%MAXQUEUE].number=number;
     for(int i=0;i<MAXQUEUE;i++){
-        printf("%d,",queue.item[i]);
+        printf("%c %d,",queue.guest[i].number,queue.guest[i].amount);
     }
     printf("\n");
 }
@@ -31,9 +38,11 @@ void DELETEQUEUE(){
         printf("empty\n");                              //最後要拿掉
         return;
     }
-    queue.item[(++queue.front)%MAXQUEUE]=-1;     //刪除過後設為-1
+    queue.guest[(++queue.front)%MAXQUEUE].amount=0;
+    queue.guest[(queue.front)%MAXQUEUE].number='N';
+
     for(int i=0;i<MAXQUEUE;i++){
-        printf("%d,",queue.item[i]);
+        printf("%c %d,",queue.guest[i].number,queue.guest[i].amount);
     }
         printf("\n");
 
@@ -47,6 +56,7 @@ int main(){
     switch(input_mode){
         case 1:
             printf("mode1\n");
+            ADDQUEUE();
             break;
         case 2:
             printf("mode2\n");
@@ -56,6 +66,7 @@ int main(){
             break;
         case 4:
             printf("mode4\n");
+            DELETEQUEUE();
             break;
         case -1:
             break;
@@ -66,35 +77,11 @@ int main(){
     
         
 
-    queue.guest[1].amount=255;
-    printf("%d\n",queue.guest[1].amount);
-    strcpy( queue.guest[1].number, "5" );
-    //queue.guest[1].number="5";
-    printf("%s\n",queue.guest[1].number);
-    //printf("%d\n",queue.guest[1].number);
-    //printf("%cn\n",queue.guest[1].number);
+   
 
 
     queue.front=0;
     queue.rear=0;
-    // ADDQUEUE(11);
-    // ADDQUEUE(222);
-    // ADDQUEUE(333);
-    // ADDQUEUE(4);
-    // ADDQUEUE(5);
-    
-
-    // ADDQUEUE(6);
-    // DELETEQUEUE();
-    // ADDQUEUE(6);
-    // DELETEQUEUE();
-    // DELETEQUEUE();
-    // DELETEQUEUE();
-    // DELETEQUEUE();
-    // DELETEQUEUE();
-    // DELETEQUEUE();
-
-    
 
     
 
