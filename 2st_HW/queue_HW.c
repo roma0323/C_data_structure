@@ -15,19 +15,19 @@ struct queue_mode{
     struct guest_mode guest[MAXQUEUE]; 
 }queue,queue2;
 
-void ADDQUEUE(){                    //檢查重複代號
+void ADDQUEUE(){                   
     char number;
     int amount;
-    printf("input\n"); 
+    //printf("input\n"); 
     scanf(" %c %d",&number,&amount);
     
     if(queue.front==(queue.rear+1)%MAXQUEUE){       //full
-        printf("full\n");                           
+        //printf("full\n");                           
         return;
     }
     for(int i=0;i<MAXQUEUE;i++){    
         if(queue.guest[i].number==number){       //same number
-        printf("same\n");                           
+        //printf("same\n");                           
         return;
         }        
     }    
@@ -37,22 +37,22 @@ void ADDQUEUE(){                    //檢查重複代號
     queue.guest[(++queue.rear)%MAXQUEUE].amount=amount;
     queue.guest[(queue.rear)%MAXQUEUE].number=number;
     for(int i=0;i<MAXQUEUE;i++){
-        printf("%c %d,",queue.guest[i].number,queue.guest[i].amount);
+        //printf("%c %d,",queue.guest[i].number,queue.guest[i].amount);
     }
-    printf("\n");
+    //printf("\n");
 }
 void DELETEQUEUE(){
     if(queue.front==queue.rear){
-        printf("empty\n");                              //最後要拿掉
+        //printf("empty\n");                              //最後要拿掉
         return;
     }
     queue.guest[(++queue.front)%MAXQUEUE].amount=0;
     queue.guest[(queue.front)%MAXQUEUE].number='N';
 
     for(int i=0;i<MAXQUEUE;i++){
-        printf("%c %d,",queue.guest[i].number,queue.guest[i].amount);
+        //printf("%c %d,",queue.guest[i].number,queue.guest[i].amount);
     }
-        printf("\n");
+        //printf("\n");
 
 }
 void COUNTTOTAL(){
@@ -60,10 +60,11 @@ void COUNTTOTAL(){
     for(int i=0;i<MAXQUEUE;i++){
         total+=queue.guest[i].amount;
     }
-    printf("total is %d",total);
+    //printf("total is %d",total);
+    printf("%d\n",total);
 }
 void SHOWFIRST(){
-    printf("front is %c",queue.guest[queue.front+1].number);
+    printf("%c\n",queue.guest[queue.front+1].number);
 }
 int main(){
     
@@ -73,25 +74,21 @@ int main(){
 
     switch(input_mode){
         case 1:
-            printf("mode1\n");
             ADDQUEUE();
             break;
         case 2:
-            printf("mode2\n");
             COUNTTOTAL();
             break;
         case 3:
-            printf("mode3\n");
             SHOWFIRST();
             break;
         case 4:
-            printf("mode4\n");
             DELETEQUEUE();
             break;
         case -1:
             break;
         default:
-            printf("error");
+            printf("error\n");
     }
     }
     

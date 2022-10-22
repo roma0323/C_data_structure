@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "*.ASM": "assembly",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "system_error": "c",
+        "xlocale": "c"
     }
 }
