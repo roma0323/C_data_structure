@@ -20,11 +20,19 @@ void ADDQUEUE(){                    //檢查重複代號
     int amount;
     printf("input\n"); 
     scanf(" %c %d",&number,&amount);
- 
-    if(queue.front==(queue.rear+1)%MAXQUEUE){
-        printf("full\n");                           //最後要拿掉
+    
+    if(queue.front==(queue.rear+1)%MAXQUEUE){       //full
+        printf("full\n");                           
         return;
     }
+    for(int i=0;i<MAXQUEUE;i++){    
+        if(queue.guest[i].number==number){       //same number
+        printf("same\n");                           
+        return;
+        }        
+    }    
+
+    
 
     queue.guest[(++queue.rear)%MAXQUEUE].amount=amount;
     queue.guest[(queue.rear)%MAXQUEUE].number=number;
@@ -47,6 +55,16 @@ void DELETEQUEUE(){
         printf("\n");
 
 }
+void COUNTTOTAL(){
+    int total=0;
+    for(int i=0;i<MAXQUEUE;i++){
+        total+=queue.guest[i].amount;
+    }
+    printf("total is %d",total);
+}
+void SHOWFIRST(){
+    printf("front is %c",queue.guest[queue.front+1].number);
+}
 int main(){
     
     int input_mode=0;
@@ -60,9 +78,11 @@ int main(){
             break;
         case 2:
             printf("mode2\n");
+            COUNTTOTAL();
             break;
         case 3:
             printf("mode3\n");
+            SHOWFIRST();
             break;
         case 4:
             printf("mode4\n");
@@ -75,15 +95,8 @@ int main(){
     }
     }
     
-        
-
-   
-
-
     queue.front=0;
     queue.rear=0;
-
-    
 
     return 0;
 }
