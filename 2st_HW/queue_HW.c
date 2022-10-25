@@ -18,16 +18,16 @@ struct queue_mode{
 void ADDQUEUE(){                   
     char number;
     int amount;
-    //printf("input\n"); 
+    printf("input\n"); 
     scanf(" %c %d",&number,&amount);
     
     if(queue.front==(queue.rear+1)%MAXQUEUE){       //full
-        //printf("full\n");                           
+        printf("full\n");                           
         return;
     }
     for(int i=0;i<MAXQUEUE;i++){    
         if(queue.guest[i].number==number){       //same number
-        //printf("same\n");                           
+        printf("same\n");                           
         return;
         }        
     }    
@@ -37,22 +37,22 @@ void ADDQUEUE(){
     queue.guest[(++queue.rear)%MAXQUEUE].amount=amount;
     queue.guest[(queue.rear)%MAXQUEUE].number=number;
     for(int i=0;i<MAXQUEUE;i++){
-        //printf("%c %d,",queue.guest[i].number,queue.guest[i].amount);
+        printf("%c %d,",queue.guest[i].number,queue.guest[i].amount);
     }
-    //printf("\n");
+    printf("\n");
 }
 void DELETEQUEUE(){
     if(queue.front==queue.rear){
-        //printf("empty\n");                              //最後要拿掉
+        printf("empty\n");                              //最後要拿掉
         return;
     }
     queue.guest[(++queue.front)%MAXQUEUE].amount=0;
     queue.guest[(queue.front)%MAXQUEUE].number='N';
 
     for(int i=0;i<MAXQUEUE;i++){
-        //printf("%c %d,",queue.guest[i].number,queue.guest[i].amount);
+        printf("%c %d,",queue.guest[i].number,queue.guest[i].amount);
     }
-        //printf("\n");
+        printf("\n");
 
 }
 void COUNTTOTAL(){
@@ -60,7 +60,7 @@ void COUNTTOTAL(){
     for(int i=0;i<MAXQUEUE;i++){
         total+=queue.guest[i].amount;
     }
-    //printf("total is %d",total);
+    printf("total is %d",total);
     printf("%d\n",total);
 }
 void SHOWFIRST(){
