@@ -13,7 +13,7 @@ void inorder(struct node *root)
 	if (root)
 	{
 		inorder(root->left);
-		printf("  %d", root->data);
+		printf("%d ", root->data);
 		inorder(root->right);
 	}
 }
@@ -21,7 +21,7 @@ void preorder(struct node *root)
 {
 	if (root)
 	{
-		printf("  %d", root->data);
+		printf("%d ", root->data);
 		preorder(root->left);
 		preorder(root->right);
 	}
@@ -32,7 +32,7 @@ void postorder(struct node *root)
 	{
 		postorder(root->left);
 		postorder(root->right);
-		printf("  %d", root->data);
+		printf("%d ", root->data);
 	}
 }
 
@@ -41,58 +41,57 @@ int main()
 	while (1)
 	{
 		int n, i;
-		struct node *p, *q, *root;
+		struct node *input_node, *comparing_node, *root;  //pointer to null
 
-		printf("\nEnter the number of nodes");
 		scanf("%d", &n);
 
 		if (n != -1)
 		{
 			for (i = 0; i < n; i++)
 			{
-				p = (struct node *)malloc(sizeof(struct node));
-				scanf("%d", &p->data);
-				p->left = NULL;
-				p->right = NULL;
+				input_node = (struct node *)malloc(sizeof(struct node));
+				scanf("%d", &input_node->data);
+				input_node->left = NULL;
+				input_node->right = NULL;
 				if (i == 0)
 				{
-					root = p; // root always point to the root node
+					root = input_node; // point to the root node
 				}
 				else
 				{
-					q = root; // q is used to traverse the tree
+					comparing_node = root; // comparing_node is used to traverse the tree
 					while (1)
 					{
-						if (p->data > q->data)
+						if (input_node->data > comparing_node->data)
 						{
-							if (q->right == NULL)
+							if (comparing_node->right == NULL)
 							{
-								q->right = p;
+								comparing_node->right = input_node;
 								break;
 							}
 							else
-								q = q->right;
+								comparing_node = comparing_node->right;
 						}
 						else
 						{
-							if (q->left == NULL)
+							if (comparing_node->left == NULL)
 							{
-								q->left = p;
+								comparing_node->left =input_node;
 								break;
 							}
 							else
-								q = q->left;
+								comparing_node = comparing_node->left;
 						}
 					}
 				}
 			}
-
-			printf("inorder:");
-			inorder(root);
-			printf("\npreorder:");
+			printf("preorder:");
 			preorder(root);
+			printf("\ninorder:");
+			inorder(root);
 			printf("\npostorder:");
 			postorder(root);
+			printf("\n\n");
 		}
 		else
 			break;
