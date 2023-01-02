@@ -31,7 +31,15 @@ void printArray(int arr[], int size)
 
 // Driver program to test above functions
 int main()
-{
+{   
+    int size=0,number;
+    
+    scanf("%d",size);
+    int arr[size];
+    for (int i =0;i<size;i++){
+        scanf("%d",number);
+    }
+   
 	int arr[] = { 5, 1, 4, 2, 8 };
 	int n = sizeof(arr) / sizeof(arr[0]);
 	bubbleSort(arr, n);
